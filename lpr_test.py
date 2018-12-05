@@ -1,4 +1,6 @@
-import  os
+import os
+
+
 def lpr(filename,print_time=1):
     command = 'lpr ./'+filename+'-#'+str(print_time)
     try :
