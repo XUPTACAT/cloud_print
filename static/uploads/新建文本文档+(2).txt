@@ -1,0 +1,35 @@
+1使用3目运算符（提示：a？ b：c）找出a，b，c中最大值；
+答案：a>b? a>c? a:c:b>c? b:c
+2补全代码（进行一个幂运算，已知math.h中有函数pow，求a的b次方的结果（整数））
+库已省略。。。。
+int  a=10，b=2；
+double c；
+
+——————
+printf（"——",c);
+答案
+c=pow（（double）a，（double）b）；
+printf（"%.0lf",c);
+3  以下四条语句中正确的是：
+A scanf（"%d"a);
+B scanf("%d",a);
+C scanf("(%d)",&a);
+D scanf("%d"，&a）；
+ 答案  CD 我又没说只选一个 
+4 我自己写了一个库函数，我该怎么用它：
+A #include<stdio.h>    B#include<stdio.h>
+   #include<my.h>         #include"my.h"
+C #include"stdio.h"      D #include"stdio.h"
+   #include"my.h"             #include<my.h>
+答案  BC   
+5补全如下代码 （交换a b的值）
+void  jiaohuan（int *q，int *p）
+{  。。。。。。。。。。。
+    具体内容我也不会
+   。。。。。。。。。。。
+}
+int a=10，b=2；
+    jiaohuan（——————）；
+printf（"%d,%d",a,b);
+答案
+jiaohuan（&a，&b）；

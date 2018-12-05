@@ -1,0 +1,60 @@
+java中，StringBuilder和StringBuffer的区别，下面说法错误的是？c
+
+a StringBuffer是线程安全的
+b StringBuilder是非线程安全的
+c StringBuffer对 String 类型进行改变的时候其实都等同于生成了一个新的 String 对象，然后将指针指向新的 String 对象。
+d 效率比较String<StringBuffer<StringBuilder，但是在 String S1 = “This is only a” + “ simple” + “ test”时，String效率最高。
+
+
+在java中，下列对继承的说法，正确的是（ a ）
+
+a 子类能继承父类的所有成员
+b 子类继承父类的非私有方法和状态
+c 子类只能继承父类的public方法和状态
+d 子类只能继承父类的方法
+
+以下说法错误的是（）
+
+a 其他选项均不正确
+b java线程类优先级相同
+c Thread和Runnable接口没有区别
+d 如果一个类继承了某个类，只能使用Runnable实现线程
+
+
+下面选项中,哪些是interface中合法方法定义?(acd)
+
+a public void main(String [] args);
+b private int getSum();
+c boolean setFlag(Boolean [] test);
+d public float get(int x);
+
+
+输出结果是（c）
+public static void main(String args[]) {
+    Thread t = new Thread() {
+        public void run() {
+            pong();
+        }
+    };
+    t.run();
+    System.out.print("ping");
+}
+static void pong() {
+    System.out.print("pong");
+}
+
+a pingpong
+b pongping
+c pingpong和pongping都有可能
+d 都不输出
+
+假设有以下代码String s = "hello"；String t = "hello"；char c [ ] = {'h','e','l','l','o'}；下列选项中返回false的语句是？()
+
+a s.equals (t)；
+b t.equals (c)；
+c s==t；
+d t.equals (new String ("hello"))；
+
+子类要调用继承自父类的方法，必须使用super关键字。b
+a 对
+b 错
