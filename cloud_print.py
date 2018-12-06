@@ -53,16 +53,17 @@ def uploads():
         f = request.files['file']
         basepath = os.path.dirname(__file__)  # 当前文件所在路径
 
-        time = request.form['myselect']
-        print(time)
+        times = request.form['myselect']
+
 
         print(f.filename)
-        upload_path = os.path.join(basepath, 'static/uploads',(f.filename))  #注意：没有的文件夹一定要先创建，不然会提示没有该路径
+        tempfile = str(int(time.time()%100))
+        upload_path = os.path.join(basepath, 'static/uploads',((tempfile)))  #注意：没有的文件夹一定要先创建，不然会提示没有该路径
         print(upload_path)
         f.save(upload_path)
 
 
-        lpr(f.filename,time)
+        lpr(f.filename,times)
 
         # python使用os.pepon 来执行命令，也就是当前进程fork了个子进程来执行打印任务。
         # 也就是说当前需要有同步的方式，然而。。。
@@ -75,4 +76,4 @@ def uploads():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='192.168.1.101' ,port=5000)
