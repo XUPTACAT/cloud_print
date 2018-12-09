@@ -4,3 +4,6 @@
 # project
 static/uploads*
 
+# python
+__pycache__/*
+

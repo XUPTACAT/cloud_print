@@ -1,13 +1,15 @@
 # coding:utf-8
 
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 import time
+import math
 
 app = Flask(__name__)
 base_dir = os.path.dirname(os.path.abspath(__file__))
 uploader_dir = base_dir + '/static/uploads/'
+
 
 def conv2pdf_file(filename):
     """
@@ -17,8 +19,13 @@ def conv2pdf_file(filename):
     """
     command = 'soffice --headless --invisible --convert-to pdf {}{} --outdir {}'
     os.popen(command.format(uploader_dir, filename, uploader_dir))
+
+    # 我觉得文件转换格式的时间和文件大小程线性关系。。就这样粗暴的处理下好了。
+    filesize = os.path.getsize(uploader_dir + filename)
+    tm = math.ceil(filesize / 1000)
+
     # TODO: process need synchronization!
-    time.sleep(10)
+    time.sleep(tm * 2)
 
 
 def lpr(filename, print_time=1):
@@ -40,7 +47,7 @@ def lpr(filename, print_time=1):
 
             finalFile = filename.split('.')[0] + '.pdf'
 
-        result = os.popen(command.format(uploader_dir, finalFile, print_time))
+        os.popen(command.format(uploader_dir, finalFile, print_time))
     except Exception as e:
         print(e)
 
@@ -56,15 +63,14 @@ def uploads():
         times = request.form['myselect']
 
 
-        print(f.filename)
+        # print(f.filename)
         filehouzhui = f.filename.split('.')[-1]
-        tempfile = str(int(time.time()%100))
-        upload_path = os.path.join(basepath, 'static/uploads',((tempfile+'.'+filehouzhui)))  #注意：没有的文件夹一定要先创建，不然会提示没有该路径
-        print(upload_path)
+        tempfile = str(int(time.time() % 100))
+        upload_path = os.path.join(basepath, 'static/uploads', ((tempfile + '.' + filehouzhui)))  #注意：没有的文件夹一定要先创建，不然会提示没有该路径
+        # print(upload_path)
         f.save(upload_path)
 
-
-        lpr(tempfile+'.'+filehouzhui,times)
+        lpr(tempfile + '.' + filehouzhui, times)
 
         # python使用os.pepon 来执行命令，也就是当前进程fork了个子进程来执行打印任务。
         # 也就是说当前需要有同步的方式，然而。。。
@@ -77,4 +83,4 @@ def uploads():
 
 
 if __name__ == '__main__':
-    app.run(host='192.168.1.152' ,port=80)
+    app.run(host='0.0.0.0', port=80)
