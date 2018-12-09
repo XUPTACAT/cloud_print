@@ -7,3 +7,5 @@ static/uploads*
 # python
 __pycache__/*
 
+# virtualenv
+venv/*
