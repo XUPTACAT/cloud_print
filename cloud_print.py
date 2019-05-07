@@ -42,12 +42,11 @@ def lpr(filename, print_time=1):
     finalFile = filename
     try:
         suffix = filename.split('.')[-1]
-        if suffix == 'asdfasdf' or suffix == 'asdfadfasdf':
-            conv2pdf_file(filename)
-            # 转化完成后后缀应该是`*.pdf`
-
-            finalFile = filename.split('.')[0] + '.pdf'
-            os.popen(command.format('/home/pi/cp/', finalFile, print_time))
+        if suffix == 'pdf' or suffix == 'PDF':
+            # 文件是PDF时直接打印
+            command = 'lpr -P HP_DeskJet_2130_series {}'
+            for i in print_time:
+                os.popen(command.format(uploader_dir + finalFile))
         else:
             print(command.format(base_dir + uploader_dir, finalFile, print_time))
             for j in print_time:
