@@ -44,7 +44,7 @@ def lpr(filename, print_time=1):
         suffix = filename.split('.')[-1]
         if suffix == 'pdf' or suffix == 'PDF':
             # 文件是PDF时直接打印
-            command = 'lpr -P HP_LaserJet_1010 {}'
+            command = 'lpr -P HP_LaserJet_1012 {}'
             for i in range(print_time):
                 os.popen(command.format(uploader_dir + finalFile))
         else:
